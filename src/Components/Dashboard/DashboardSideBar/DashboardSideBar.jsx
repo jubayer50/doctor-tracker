@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaUserDoctor } from "react-icons/fa6";
 import { ImUsers } from "react-icons/im";
-import { IoMdHome } from "react-icons/io";
+import { IoMdHome, IoMdPersonAdd } from "react-icons/io";
 import { MdLogout, MdOutlineMenu } from "react-icons/md";
 
 const DashboardSideBar = () => {
@@ -18,6 +18,7 @@ const DashboardSideBar = () => {
 
   const navContents = [
     { icon: IoMdHome, href: "/dashboard", label: "Home" },
+    { icon: IoMdPersonAdd, href: "/dashboard/add-doctor", label: "Add Doctor" },
     {
       icon: FaUserDoctor,
       href: "/dashboard/doctors-management",
@@ -57,7 +58,7 @@ const DashboardSideBar = () => {
             </Link>
           </div>
 
-          <div className="p-5 flex items-center gap-4 border-b border-[#005eb8]">
+          <div className="px-5 py-3.5 flex items-center gap-4 border-b border-[#005eb8]">
             <div className="w-12 h-12 rounded-full">
               <Image
                 src={user?.image || "https://i.ibb.co.com/MxfRjbYY/user.png"}
@@ -73,7 +74,7 @@ const DashboardSideBar = () => {
             </h2>
           </div>
 
-          <div className="mt-10 space-y-4 px-5">{navLinks}</div>
+          <div className="mt-7 space-y-4 px-5">{navLinks}</div>
         </div>
 
         <div className="px-5 py-4">
