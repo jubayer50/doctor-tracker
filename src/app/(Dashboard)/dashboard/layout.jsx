@@ -1,5 +1,12 @@
+import DashboardSideBar from "@/Components/Dashboard/DashboardSideBar/DashboardSideBar";
+
 const DashboardLayout = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <div className="flex flex-col md:flex-row md:gap-10">
+      <DashboardSideBar></DashboardSideBar>
+      <div className="max-w-330 px-3 mx-auto mt-6">{children}</div>
+    </div>
+  );
 };
 
 export default DashboardLayout;

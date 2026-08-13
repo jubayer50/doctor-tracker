@@ -56,9 +56,11 @@ const Navbar = () => {
             </button>
 
             <div>
-              <h2 className="text-[22px] md:text-2xl font-semibold">
-                Doctor Tracker
-              </h2>
+              <Link href={"/"}>
+                <h2 className="text-[22px] md:text-2xl font-semibold">
+                  Doctor Tracker
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -81,7 +83,7 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   onClick={async () => await authClient.signOut()}
-                  className={"bg-[##005eb8] rounded-md"}
+                  className={"bg-[#005eb8] rounded-md"}
                 >
                   Logout
                 </Button>
