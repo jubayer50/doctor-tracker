@@ -1,8 +1,5 @@
-"use client";
-
 import { Button } from "@heroui/react";
 import Image from "next/image";
-import Link from "next/link";
 import { FaSearch, FaArrowRight, FaUserMd, FaUsers } from "react-icons/fa";
 
 const Banner = () => {
