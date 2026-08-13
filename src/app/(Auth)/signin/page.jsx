@@ -1,7 +1,9 @@
 "use client";
 
-import { Separator } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { Separator, toast } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
@@ -9,6 +11,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -18,19 +21,28 @@ const SignInPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // const { data: authData, error } = await authClient.signUp.email({
-    //   email: data.email,
-    //   password: data.password,
-    //   name: data.name,
-    //   image: data.image,
-    // });
+    const { data: authData, error } = await authClient.signIn.email({
+      ...data,
+      // email,
+      // password,
+      // rememberMe: false,
+    });
 
-    console.log(data, "from signup page");
+    if (authData) {
+      toast.success("login successful");
+      router.push("/");
+    } else {
+      toast.warning(error.message);
+    }
 
     reset();
   };
 
-  const handleGoogleLogIn = () => {};
+  const handleGoogleLogIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   return (
     <div className="bg-[#d5effb]">
@@ -46,24 +58,6 @@ const SignInPage = () => {
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-              {/* Name */}
-              <div>
-                <label className="block mb-2 font-medium">Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  {...register("name", {
-                    required: "Name is required",
-                  })}
-                  className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#005eb8]"
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-[13px] mt-1">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
-
               {/* Email */}
               <div>
                 <label className="block mb-2 font-medium">Email</label>

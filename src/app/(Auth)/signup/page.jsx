@@ -1,7 +1,9 @@
 "use client";
 
-import { Separator } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { Separator, toast } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
@@ -9,6 +11,8 @@ import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -18,19 +22,28 @@ const SignUpPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // const { data: authData, error } = await authClient.signUp.email({
-    //   email: data.email,
-    //   password: data.password,
-    //   name: data.name,
-    //   image: data.image,
-    // });
+    const { data: authData, error } = await authClient.signUp.email({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      image: data.image,
+    });
 
-    console.log(data, "from signup page");
+    if (authData.token) {
+      toast.success("Signup successfully");
+      router.push("/");
+    } else {
+      toast.warning(error.message);
+    }
 
     reset();
   };
 
-  const handleGoogleLogIn = () => {};
+  const handleGoogleLogIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   return (
     <div className="bg-[#d5effb]">

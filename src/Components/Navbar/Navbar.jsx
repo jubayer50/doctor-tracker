@@ -1,12 +1,16 @@
 "use client";
 
-import { Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { useState } from "react";
 import MyNavLinks from "./MyNavLinks";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const links = (
     <>
@@ -61,11 +65,42 @@ const Navbar = () => {
           <ul className="hidden items-center gap-4 md:flex">{links}</ul>
 
           <div>
-            <Link href={"/signin"}>
-              <Button size="sm" className={"bg-[##005eb8] rounded-md"}>
-                Sign In
-              </Button>
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-3">
+                {/* avatar */}
+                <Avatar>
+                  <Avatar.Image
+                    referrerPolicy="no"
+                    alt={user.name}
+                    src={user.image || "https://i.ibb.co.com/MxfRjbYY/user.png"}
+                    className="object-cover"
+                  />
+                  <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
+                </Avatar>
+
+                <Button
+                  size="sm"
+                  onClick={async () => await authClient.signOut()}
+                  className={"bg-[##005eb8] rounded-md"}
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link href={"/signin"}>
+                  <Button size="sm" className={"bg-[##005eb8] rounded-md"}>
+                    Sign In
+                  </Button>
+                </Link>
+
+                <Link href={"/signup"}>
+                  <Button size="sm" className={"bg-[##005eb8] rounded-md"}>
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </header>
         {isMenuOpen && (
