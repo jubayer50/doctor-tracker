@@ -49,7 +49,7 @@ const AddDoctor = () => {
           </TextField>
 
           <TextField isRequired name="specialization" type="text">
-            <Label>Doctor's Specialization</Label>
+            <Label>Doctor`s Specialization</Label>
             <Input
               placeholder="Enter doctor's specialization"
               className={
@@ -59,7 +59,7 @@ const AddDoctor = () => {
           </TextField>
 
           <TextField isRequired name="hospital" type="text">
-            <Label>Doctor's Hospital Name</Label>
+            <Label>Doctor`s Hospital Name</Label>
             <Input
               placeholder="Enter doctor's hospital name"
               className={
@@ -69,7 +69,7 @@ const AddDoctor = () => {
           </TextField>
 
           <TextField isRequired name="phone" type="text">
-            <Label>Doctor's Phone Number</Label>
+            <Label>Doctor`s Phone Number</Label>
             <Input
               placeholder="Enter doctor phone"
               className={
@@ -79,7 +79,7 @@ const AddDoctor = () => {
           </TextField>
 
           <TextField isRequired name="email" type="text">
-            <Label>Doctor's Email Number</Label>
+            <Label>Doctor`s Email Number</Label>
             <Input
               placeholder="Enter doctor email"
               className={

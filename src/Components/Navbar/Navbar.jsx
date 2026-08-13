@@ -57,8 +57,8 @@ const Navbar = () => {
 
             <div>
               <Link href={"/"}>
-                <h2 className="text-[22px] md:text-2xl font-semibold">
-                  Doctor Tracker
+                <h2 className="text-[22px] md:text-2xl font-bold">
+                  Doctor <span className="text-[#005eb8]">Tracker</span>
                 </h2>
               </Link>
             </div>
