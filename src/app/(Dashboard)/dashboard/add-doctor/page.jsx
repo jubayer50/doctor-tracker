@@ -22,7 +22,9 @@ const AddDoctor = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+
+    const formData = new FormData(form);
     const doctorData = Object.fromEntries(formData.entries());
 
     const imageHostUrl = await uploadImage(doctorData.image);
@@ -33,6 +35,8 @@ const AddDoctor = () => {
 
     if (result.insertedId) {
       toast.success("Doctor created successfully!");
+      form.reset();
+      setImagePreview("");
     }
   };
 
