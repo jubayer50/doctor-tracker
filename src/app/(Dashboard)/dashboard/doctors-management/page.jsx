@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import EditDoctor from "@/Components/ManageDoctors/EditDoctor";
-import SearchAndFilter from "@/Components/ManageDoctors/SearchAndFilter/SearchAndFilter";
+import SearchAndFilter from "@/Components/SearchAndFilter/SearchAndFilter";
 
 const DoctorManagement = async ({ searchParams }) => {
   const { search, specialization } = await searchParams;
@@ -26,7 +26,9 @@ const DoctorManagement = async ({ searchParams }) => {
       <h2 className="font-bold text-2xl text-[#005eb8]">Management Doctors</h2>
 
       <div className="my-5 bg-[#d5effb] rounded-md p-3">
-        <SearchAndFilter></SearchAndFilter>
+        <SearchAndFilter
+          url={"/dashboard/doctors-management"}
+        ></SearchAndFilter>
       </div>
 
       <div className="mt-6">

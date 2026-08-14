@@ -4,7 +4,7 @@ import { ListBox, SearchField, Select } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const SearchAndFilter = () => {
+const SearchAndFilter = ({ url }) => {
   const [search, setSearch] = useState("");
   const [specialization, setSpecialization] = useState("");
 
@@ -20,8 +20,8 @@ const SearchAndFilter = () => {
       params.set("specialization", specialization);
     }
 
-    router.push(`/dashboard/doctors-management?${params.toString()}`);
-  }, [search, specialization, router]);
+    router.push(`${url}?${params.toString()}`);
+  }, [search, specialization, router, url]);
 
   return (
     <div className="flex flex-col md:flex-row gap-3 md:gap-5">
