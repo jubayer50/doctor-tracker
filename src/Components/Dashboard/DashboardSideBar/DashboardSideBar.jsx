@@ -48,7 +48,7 @@ const DashboardSideBar = () => {
 
   return (
     <div className="">
-      <aside className="w-64 h-screen bg-[#d5effb] hidden md:flex flex-col justify-between">
+      <aside className="w-64 min-h-screen bg-[#d5effb] hidden md:flex flex-col justify-between">
         <div>
           <div className="py-5 text-center border-b border-[#005eb8]">
             <Link href={"/"}>
