@@ -1,13 +1,11 @@
-"use client";
-
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import { FaExclamationTriangle, FaHome, FaSignInAlt } from "react-icons/fa";
 
 const UnauthorizedPage = () => {
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-linear-to-br from-[#d5effb]/30 via-white to-[#d5effb]/20 px-4">
-      <div className="max-w-md w-full text-center">
+    <div className="min-h-screen flex items-center justify-center bg-[#d5effb50] px-4">
+      <div className="text-center">
         {/* Icon */}
         <div className="relative inline-block mb-6">
           <div className="absolute inset-0 bg-red-500/20 rounded-full blur-2xl animate-pulse" />
@@ -25,7 +23,7 @@ const UnauthorizedPage = () => {
         </h2>
 
         {/* Description */}
-        <p className="text-gray-500 text-base leading-relaxed mb-8">
+        <p className="text-gray-500 max-w-md mx-auto leading-relaxed mb-8">
           You don`t have permission to access this page. Please sign in with the
           appropriate credentials to continue.
         </p>
