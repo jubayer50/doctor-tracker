@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation.js";
 import { getTokenServer } from "./getTokenServer.js";
 
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+export const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 // headers
 export const authHeader = async () => {
@@ -17,9 +17,9 @@ export const serverFetch = async (path) => {
   return res.json();
 };
 
-export const protectServerMutation = async (path, data) => {
+export const protectServerMutation = async (path, data, method = "POST") => {
   const res = await fetch(`${base_url}${path}`, {
-    method: "POST",
+    method: method,
     headers: { "Content-type": "application/json", ...(await authHeader()) },
     body: JSON.stringify(data),
   });
