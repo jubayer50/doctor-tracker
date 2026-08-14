@@ -17,6 +17,15 @@ export const serverFetch = async (path) => {
   return res.json();
 };
 
+export const protectServerFetch = async (path) => {
+  const res = await fetch(`${base_url}${path}`, {
+    headers: await authHeader(),
+  });
+
+  return handleStatusCode(res);
+};
+
+// server mutation
 export const protectServerMutation = async (path, data, method = "POST") => {
   const res = await fetch(`${base_url}${path}`, {
     method: method,

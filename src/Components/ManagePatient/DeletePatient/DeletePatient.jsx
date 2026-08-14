@@ -1,17 +1,17 @@
 "use client";
 
-import { deleteDoctor } from "@/lib/action/delete-doctors.js";
+import { deletePatient } from "@/lib/action/delete-patient.js";
 import { AlertDialog, Button, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-const DeleteDoctor = ({ doctorId }) => {
+const DeletePatient = ({ patientId }) => {
   const router = useRouter();
 
-  const handleDelete = async (doctorId) => {
-    const result = await deleteDoctor(doctorId);
+  const handleDelete = async (patientId) => {
+    const result = await deletePatient(patientId);
 
     if (result.deletedCount > 0) {
-      toast.success("Doctor delete successfully");
+      toast.success("Patient delete successfully");
       router.refresh();
     } else {
       toast.warning(result.message);
@@ -21,7 +21,7 @@ const DeleteDoctor = ({ doctorId }) => {
   return (
     <AlertDialog>
       <Button variant="danger" size="sm" className={"rounded-md"}>
-        Delete Doctor
+        Delete Patient
       </Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
@@ -30,12 +30,12 @@ const DeleteDoctor = ({ doctorId }) => {
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
               <AlertDialog.Heading>
-                Delete doctor permanently?
+                Delete patient permanently?
               </AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
               <p>
-                This doctor will be permanently deleted. This action cannot be
+                This Patient will be permanently deleted. This action cannot be
                 undone.
               </p>
             </AlertDialog.Body>
@@ -45,12 +45,12 @@ const DeleteDoctor = ({ doctorId }) => {
               </Button>
 
               <Button
-                onClick={() => handleDelete(doctorId)}
+                onClick={() => handleDelete(patientId)}
                 slot="close"
                 variant="danger"
                 className={"rounded-md"}
               >
-                Delete Doctor
+                Delete Patient
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>
@@ -60,4 +60,4 @@ const DeleteDoctor = ({ doctorId }) => {
   );
 };
 
-export default DeleteDoctor;
+export default DeletePatient;
