@@ -8,7 +8,7 @@ import DoctorCard from "../DoctorCard/DoctorCard";
 const TopDoctorsSection = () => {
   const doctors = [
     {
-      name: "Dr. Sarah Johnson",
+      doctor_name: "Dr. Sarah Johnson",
       specialization: "Cardiologist",
       hospital: "City Medical Center",
 
