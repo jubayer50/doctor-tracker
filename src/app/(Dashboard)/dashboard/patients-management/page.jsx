@@ -1,4 +1,5 @@
 import DeletePatient from "@/Components/ManagePatient/DeletePatient/DeletePatient";
+import EditPatient from "@/Components/ManagePatient/EditPatient/EditPatient";
 import { getPatients } from "@/lib/api/paitents.js";
 import { Button, Table } from "@heroui/react";
 import Image from "next/image";
@@ -45,9 +46,7 @@ const PatientsManagement = async () => {
                     <Table.Cell>1</Table.Cell>
 
                     <Table.Cell className={"flex items-center gap-2"}>
-                      <Button size="sm" className={"rounded-md"}>
-                        Edit
-                      </Button>
+                      <EditPatient patient={patient}></EditPatient>
 
                       <DeletePatient patientId={patient._id}></DeletePatient>
                     </Table.Cell>
