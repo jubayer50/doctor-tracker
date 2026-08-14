@@ -7,9 +7,10 @@ import Link from "next/link";
 import React from "react";
 import EditDoctor from "@/Components/ManageDoctors/EditDoctor";
 import SearchAndFilter from "@/Components/SearchAndFilter/SearchAndFilter";
+import Paginate from "@/Components/Paginate/Paginate";
 
 const DoctorManagement = async ({ searchParams }) => {
-  const { search, specialization } = await searchParams;
+  const { search, specialization, page } = await searchParams;
 
   const params = new URLSearchParams();
   if (search) {
@@ -18,11 +19,14 @@ const DoctorManagement = async ({ searchParams }) => {
   if (specialization) {
     params.set("specialization", specialization);
   }
+  if (page) {
+    params.set("page", page);
+  }
 
-  const doctors = await getDoctors(params);
+  const { doctors: doctors, totalDoctors } = await getDoctors(params);
 
   return (
-    <div className="">
+    <div className="mb-12">
       <h2 className="font-bold text-2xl text-[#005eb8]">Management Doctors</h2>
 
       <div className="my-5 bg-[#d5effb] rounded-md p-3">
@@ -83,6 +87,13 @@ const DoctorManagement = async ({ searchParams }) => {
             </Table.Content>
           </Table.ScrollContainer>
         </Table>
+      </div>
+
+      <div className="mt-8">
+        <Paginate
+          totalData={totalDoctors}
+          url="/dashboard/doctors-management"
+        ></Paginate>
       </div>
     </div>
   );

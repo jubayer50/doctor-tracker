@@ -48,7 +48,7 @@ const DashboardSideBar = () => {
 
   return (
     <div className="">
-      <aside className="w-64 min-h-screen bg-[#d5effb] hidden md:flex flex-col justify-between">
+      <aside className="w-64 min-h-screen h-full bg-[#d5effb] hidden md:flex flex-col flex-1">
         <div>
           <div className="py-5 text-center border-b border-[#005eb8]">
             <Link href={"/"}>
@@ -77,7 +77,7 @@ const DashboardSideBar = () => {
           <div className="mt-7 space-y-4 px-5">{navLinks}</div>
         </div>
 
-        <div className="px-5 py-4">
+        <div className="px-2 mt-4">
           <Button
             onClick={async () => await authClient.signOut()}
             className="flex items-center gap-3 text-red-600 py-4 w-full justify-start bg-transparent"

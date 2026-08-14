@@ -1,9 +1,10 @@
 import DoctorCard from "@/Components/DoctorCard/DoctorCard";
+import Paginate from "@/Components/Paginate/Paginate";
 import SearchAndFilter from "@/Components/SearchAndFilter/SearchAndFilter";
 import { getDoctors } from "@/lib/api/doctors.js";
 
 const AllDoctorsPage = async ({ searchParams }) => {
-  const { search, specialization } = await searchParams;
+  const { search, specialization, page } = await searchParams;
 
   const params = new URLSearchParams();
   if (search) {
@@ -12,8 +13,11 @@ const AllDoctorsPage = async ({ searchParams }) => {
   if (specialization) {
     params.set("specialization", specialization);
   }
+  if (page) {
+    params.set("page", page);
+  }
 
-  const allDoctors = await getDoctors(params);
+  const { doctors: allDoctors, totalDoctors } = await getDoctors(params);
 
   return (
     <div className="max-w-330 px-4 mx-auto mt-6 mb-16">
@@ -29,6 +33,10 @@ const AllDoctorsPage = async ({ searchParams }) => {
         {allDoctors.map((doctor) => (
           <DoctorCard key={doctor._id} doctor={doctor}></DoctorCard>
         ))}
+      </div>
+
+      <div className="mt-8">
+        <Paginate totalData={totalDoctors} url="/all-doctors"></Paginate>
       </div>
     </div>
   );

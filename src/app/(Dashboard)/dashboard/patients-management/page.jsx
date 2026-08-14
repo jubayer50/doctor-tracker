@@ -1,23 +1,27 @@
 import DeletePatient from "@/Components/ManagePatient/DeletePatient/DeletePatient";
 import EditPatient from "@/Components/ManagePatient/EditPatient/EditPatient";
 import SearchAndFilterPatient from "@/Components/ManagePatient/SearchAndFilterPatient/SearchAndFilterPatient";
+import Paginate from "@/Components/Paginate/Paginate";
 import { getPatients } from "@/lib/api/paitents.js";
 import { Button, Table } from "@heroui/react";
 import Image from "next/image";
 import React from "react";
 
 const PatientsManagement = async ({ searchParams }) => {
-  const { search } = await searchParams;
+  const { search, page } = await searchParams;
 
   const params = new URLSearchParams();
   if (search) {
     params.set("search", search);
   }
+  if (page) {
+    params.set("page", page);
+  }
 
-  const patients = await getPatients(params);
+  const { patients, totalPatients } = await getPatients(params);
 
   return (
-    <div>
+    <div className="mb-6">
       <h2 className="text-2xl font-bold text-[#005eb8]">Patients Management</h2>
 
       <div className="my-5 p-3 rounded-md bg-[#d5effb]">
@@ -68,6 +72,13 @@ const PatientsManagement = async ({ searchParams }) => {
             </Table.Content>
           </Table.ScrollContainer>
         </Table>
+      </div>
+
+      <div className="mt-4">
+        <Paginate
+          totalData={totalPatients}
+          url="/dashboard/patients-management"
+        ></Paginate>
       </div>
     </div>
   );
