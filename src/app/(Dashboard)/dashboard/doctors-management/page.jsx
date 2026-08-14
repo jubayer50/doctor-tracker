@@ -1,10 +1,11 @@
-import AddPatient from "@/Components/ManageDoctors/AddPatient/AddPatient";
+import AddPatient from "@/Components/ManagePatient/AddPatient/AddPatient";
 import DeleteDoctor from "@/Components/ManageDoctors/DeleteDoctor/DeleteDoctor";
 import { getDoctors } from "@/lib/api/doctors.js";
 import { Button, Table } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import EditDoctor from "@/Components/ManageDoctors/EditDoctor";
 
 const DoctorManagement = async () => {
   const doctors = await getDoctors();
@@ -55,9 +56,7 @@ const DoctorManagement = async () => {
                         </Button>
                       </Link>
 
-                      <Button size="sm" className={"rounded-md"}>
-                        Edit
-                      </Button>
+                      <EditDoctor doctor={doctor}></EditDoctor>
 
                       <DeleteDoctor doctorId={doctor._id}></DeleteDoctor>
                     </Table.Cell>
