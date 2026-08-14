@@ -6,13 +6,28 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import EditDoctor from "@/Components/ManageDoctors/EditDoctor";
+import SearchAndFilter from "@/Components/ManageDoctors/SearchAndFilter/SearchAndFilter";
 
-const DoctorManagement = async () => {
-  const doctors = await getDoctors();
+const DoctorManagement = async ({ searchParams }) => {
+  const { search, specialization } = await searchParams;
+
+  const params = new URLSearchParams();
+  if (search) {
+    params.set("search", search);
+  }
+  if (specialization) {
+    params.set("specialization", specialization);
+  }
+
+  const doctors = await getDoctors(params);
 
   return (
     <div className="">
       <h2 className="font-bold text-2xl text-[#005eb8]">Management Doctors</h2>
+
+      <div className="my-5 bg-[#d5effb] rounded-md p-3">
+        <SearchAndFilter></SearchAndFilter>
+      </div>
 
       <div className="mt-6">
         <Table>
