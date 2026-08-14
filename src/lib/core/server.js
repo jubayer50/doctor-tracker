@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation.js";
 import { getTokenServer } from "./getTokenServer.js";
 
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -23,8 +24,14 @@ export const protectServerMutation = async (path, data) => {
     body: JSON.stringify(data),
   });
 
-  return res.json();
+  return handleStatusCode(res);
 };
 
 //handle error with code
-const handleCode = () => {};
+export const handleStatusCode = (res) => {
+  if (res.status === 401) {
+    redirect("/unauthorized");
+  }
+
+  return res.json();
+};
