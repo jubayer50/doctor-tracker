@@ -1,16 +1,28 @@
 import DeletePatient from "@/Components/ManagePatient/DeletePatient/DeletePatient";
 import EditPatient from "@/Components/ManagePatient/EditPatient/EditPatient";
+import SearchAndFilterPatient from "@/Components/ManagePatient/SearchAndFilterPatient/SearchAndFilterPatient";
 import { getPatients } from "@/lib/api/paitents.js";
 import { Button, Table } from "@heroui/react";
 import Image from "next/image";
 import React from "react";
 
-const PatientsManagement = async () => {
-  const patients = await getPatients();
+const PatientsManagement = async ({ searchParams }) => {
+  const { search } = await searchParams;
+
+  const params = new URLSearchParams();
+  if (search) {
+    params.set("search", search);
+  }
+
+  const patients = await getPatients(params);
 
   return (
     <div>
       <h2 className="text-2xl font-bold text-[#005eb8]">Patients Management</h2>
+
+      <div className="my-5 p-3 rounded-md bg-[#d5effb]">
+        <SearchAndFilterPatient></SearchAndFilterPatient>
+      </div>
 
       <div className="mt-8">
         <Table>
