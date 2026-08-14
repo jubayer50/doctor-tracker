@@ -1,7 +1,8 @@
 "use client";
 
+import { createDoctor } from "@/lib/action/add-doctor.js";
 import { uploadImage } from "@/lib/uploadImage";
-import { Button, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, Form, Input, Label, TextField, toast } from "@heroui/react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { TfiUpload } from "react-icons/tfi";
@@ -27,6 +28,12 @@ const AddDoctor = () => {
     const imageHostUrl = await uploadImage(doctorData.image);
 
     const updateDoctorData = { ...doctorData, image: imageHostUrl };
+
+    const result = await createDoctor(updateDoctorData);
+
+    if (result.insertedId) {
+      toast.success("Doctor created successfully!");
+    }
   };
 
   return (
