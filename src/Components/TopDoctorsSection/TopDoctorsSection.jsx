@@ -16,7 +16,7 @@ const TopDoctorsSection = () => {
         "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     },
     {
-      name: "Dr. Michael Chen",
+      doctor_name: "Dr. Michael Chen",
       specialization: "Neurologist",
       hospital: "Apollo Hospital",
 
@@ -24,7 +24,7 @@ const TopDoctorsSection = () => {
         "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     },
     {
-      name: "Dr. Emily Williams",
+      doctor_name: "Dr. Emily Williams",
       specialization: "Pediatrician",
       hospital: "Children's Health Center",
 

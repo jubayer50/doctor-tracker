@@ -37,6 +37,8 @@ const AddDoctor = () => {
       toast.success("Doctor created successfully!");
       form.reset();
       setImagePreview("");
+    } else {
+      toast.warning(result.message);
     }
   };
 

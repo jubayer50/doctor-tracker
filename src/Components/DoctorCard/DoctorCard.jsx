@@ -1,5 +1,6 @@
 import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { PiHospital } from "react-icons/pi";
 
 const DoctorCard = ({ doctor }) => {
@@ -9,7 +10,7 @@ const DoctorCard = ({ doctor }) => {
       <div className="h-82 relative overflow-hidden">
         <Image
           src={doctor?.image}
-          alt={doctor?.name}
+          alt={doctor?.name || "doctor image"}
           width={1000}
           height={1000}
           className="w-full h-full object-cover object-top aspect-square group-hover:scale-104 transition-all duration-300"
@@ -31,9 +32,11 @@ const DoctorCard = ({ doctor }) => {
         </div>
 
         <div className="mt-5">
-          <Button className="w-full bg-[#005eb8] text-white hover:bg-[#003d7a] font-medium rounded-xl transition-all duration-300">
-            View Profile
-          </Button>
+          <Link href={`/all-doctors/${doctor._id}`}>
+            <Button className="w-full bg-[#005eb8] text-white hover:bg-[#003d7a] font-medium rounded-xl transition-all duration-300">
+              View Profile
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
