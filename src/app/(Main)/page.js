@@ -10,7 +10,7 @@ const HomePage = () => {
 
       <TopDoctorsSection></TopDoctorsSection>
 
-      <StatsSection></StatsSection>
+      <StatsSection className={"my-26"}></StatsSection>
 
       <Footer></Footer>
     </div>

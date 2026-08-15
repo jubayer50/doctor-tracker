@@ -1,7 +1,9 @@
+import StatsSection from "@/Components/StatsSection/StatsSection";
+
 const DashboardHome = () => {
   return (
     <div>
-      <h2>Dashboard</h2>
+      <StatsSection className={"rounded-lg"}></StatsSection>
     </div>
   );
 };

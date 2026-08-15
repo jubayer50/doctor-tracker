@@ -2,19 +2,32 @@
 
 import { FaUserMd, FaUsers, FaHospital, FaCalendarCheck } from "react-icons/fa";
 import CountUp from "react-countup";
+import { useEffect, useState } from "react";
+import { getStats } from "@/lib/api/stats.js";
 
-const StatsSection = () => {
+const StatsSection = ({ className }) => {
+  const [statsData, setStatsData] = useState({});
+
+  useEffect(() => {
+    const getStatsData = async () => {
+      const data = await getStats();
+      setStatsData(data);
+    };
+
+    getStatsData();
+  }, []);
+
   const stats = [
     {
       icon: <FaUserMd className="w-6 h-6 text-[#005eb8]" />,
-      value: 120,
+      value: statsData?.totalDoctors,
       suffix: "+",
       label: "Total Doctors",
       color: "bg-[#d5effb]",
     },
     {
       icon: <FaUsers className="w-6 h-6 text-[#005eb8]" />,
-      value: 1450,
+      value: statsData?.totalPatients,
       suffix: "+",
       label: "Total Patients",
       color: "bg-[#d5effb]",
@@ -28,7 +41,7 @@ const StatsSection = () => {
     },
     {
       icon: <FaCalendarCheck className="w-6 h-6 text-[#005eb8]" />,
-      value: 3200,
+      value: 723,
       suffix: "+",
       label: "Appointments",
       color: "bg-[#d5effb]",
@@ -36,7 +49,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-[#d5effb]">
+    <section className={`py-16 bg-[#d5effb] ${className}`}>
       <div className="max-w-330 mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {stats.map((stat, index) => (
