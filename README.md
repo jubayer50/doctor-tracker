@@ -90,3 +90,11 @@ Doctor Tracker is a secure administrative web application that allows authentica
    git clone https://github.com/jubayer50/doctor-tracker.git
    cd doctor-tracker-frontend
    ```
+
+## Why Chose Redux over Context API
+
+### Context API is like passing a notebook around a classroom. If one student writes something, the notebook must go to every student one by one. Everyone gets the whole notebook again, even if they only need one page. This becomes slow and messy when the class is large.
+
+### Redux is like a digital notice board on the wall. When someone posts an update, everyone sees it at once. Students only look at the part they care about. Nobody gets extra information they don't need. Everything stays neat, and we can always check who posted what and when.
+
+### We chose Redux because our app has many features that need to share data smoothly. Context API would create confusion and slow things down. Redux keeps everything fast, clean, and easy to manage as we add new features. For small apps, Context API works fine. For bigger apps with lots of data, Redux is the smarter choice.
